@@ -18,6 +18,7 @@ module.exports = {
     },
     fontFamily: {
       inter: ["Inter", "sans-serif"],
+      firaSans: ["Fira Sans", "sans-serif"],
     },
     extend: {
       colors: {

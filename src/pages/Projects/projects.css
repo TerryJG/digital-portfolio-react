@@ -1,0 +1,264 @@
+/* Fira Sans Font - Header */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* Roboto Font - Description */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+  background: rgb(255, 234, 255);
+  background: linear-gradient(80deg, rgba(255, 251, 230, 0.99) 10%, rgba(233, 235, 253, 0.95) 70%);
+}
+
+@keyframes animateBgPreloader {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+.spinner-border {
+  width: 75px;
+  height: 75px;
+}
+
+@media all and (max-width: 768px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .desktop-hide {
+    display: none;
+  }
+}
+
+.header {
+  text-align: center;
+}
+.header h1 {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 4rem;
+  transition: all ease 0.5s;
+}
+.header .category-section {
+  text-align: center;
+}
+.header .category-section button {
+  display: inline-block;
+}
+
+.category-items {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.category-items .button-wrapper {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-wrap: nowrap;
+  border: 1px solid #000;
+  border-radius: 7px;
+  padding: 8px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.category-items .dropdown-menu {
+  z-index: 10 !important;
+}
+.category-items #playIcon {
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+.category-items .mobile-category-btn {
+  width: 350px;
+  border-color: #5568d3;
+  color: #5568d3;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .mobile-category-btn:hover {
+  background-color: #697ad8;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .mobile-category-btn i {
+  font-size: 1.4rem;
+}
+.category-items .mobile-category-btn #showCategory {
+  font-size: 1.3rem;
+}
+.category-items .apple-music-wrapper {
+  overflow: hidden;
+  border-color: #fc3c44;
+  color: #fc3c44;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .apple-music-wrapper:hover, .category-items .apple-music-wrapper.active {
+  background-color: #fc3c44;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .behold-the-lamb-wrapper {
+  border-color: #eeaf1b;
+  color: #eeaf1b;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .behold-the-lamb-wrapper:hover, .category-items .behold-the-lamb-wrapper.active {
+  background-color: #e8a811;
+  border-color: #dfa111;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .challenge-centric-wrapper {
+  border-color: #841bee;
+  color: #841bee;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .challenge-centric-wrapper:hover, .category-items .challenge-centric-wrapper.active {
+  background-color: #841bee;
+  border-color: #841bee;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .foundation-of-triathletes-wrapper {
+  border-color: #56e72a;
+  color: #56e72a;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .foundation-of-triathletes-wrapper:hover, .category-items .foundation-of-triathletes-wrapper.active {
+  background-color: #40c816;
+  border-color: #40c816;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .god-our-only-hope-wrapper {
+  border-color: #7100db;
+  color: #7100db;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .god-our-only-hope-wrapper:hover, .category-items .god-our-only-hope-wrapper.active {
+  background-color: #7100db;
+  border-color: #7100db;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .sounds-of-africa-wrapper {
+  border-color: #eebb22;
+  color: #eebb22;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .sounds-of-africa-wrapper:hover, .category-items .sounds-of-africa-wrapper.active {
+  background-color: #e5b012;
+  border-color: #e5b012;
+  color: #000;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .toastmasters-wrapper {
+  border-color: #ee2244;
+  color: #ee2244;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .toastmasters-wrapper:hover, .category-items .toastmasters-wrapper.active {
+  background-color: #cd102f;
+  border-color: #cd102f;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .github-wrapper {
+  border-color: #1b1b1b;
+  color: #1b1b1b;
+  transition: all ease-in-out 0.2s;
+}
+.category-items .github-wrapper:hover, .category-items .github-wrapper.active {
+  background-color: #020202;
+  border-color: #020202;
+  color: #fff;
+  transition: all ease-in-out 0.2s;
+}
+
+.max-width-container {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  grid-auto-rows: 144px;
+  grid-auto-flow: dense;
+}
+@media all and (min-width: 320px) and (max-width: 767px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    grid-auto-rows: 100px;
+  }
+}
+@media all and (min-width: 768px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    grid-auto-rows: 144px;
+  }
+}
+.grid-wrapper i {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 8px;
+  border-bottom-right-radius: 10px;
+  font-size: 20px;
+  color: rgb(228, 228, 228);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6666666667);
+}
+
+.grid-wrapper .wide {
+  grid-column: span 2;
+}
+
+.grid-wrapper .tall {
+  grid-row: span 2;
+}
+
+.grid-wrapper .big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.grid-wrapper > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-wrapper > div > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.grid-wrapper .video {
+  grid-column: span 1.8;
+}
+
+.fancybox img {
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  min-width: 100%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=projects.css.map */

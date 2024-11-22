@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import imageRoutes from './routes/imageRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
+import categoryInfoRoutes  from "./routes/categoryInfoRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/portfolio/images', imageRoutes);
 app.use('/portfolio/videos', videoRoutes);
+app.use('/portfolio/categoryInfo', categoryInfoRoutes);
 
 // Serve index.html
 app.get('/', (req, res) => {
