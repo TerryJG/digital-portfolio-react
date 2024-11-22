@@ -52,7 +52,7 @@ export default function Card({
 
   return (
     <div
-      className={`${className} ${image ? "image-item" : ""} ${video ? "video-item aspect-video" : ""} fancybox relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg`}
+      className={`${className} ${image ? "image-item" : ""} ${video ? "video-item aspect-video" : ""} fancybox relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg drop-shadow-md`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -65,6 +65,10 @@ export default function Card({
             <i
               className={` ${isPlaying ? "opacity-0" : "opacity-100"} fa fa-solid fa-play absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform text-6xl text-red-500 transition-opacity duration-300`}
             ></i>
+            <div className={`${isPlaying ? "opacity-0" : "opacity-100"} absolute bottom-5 left-5 flex flex-col transition-opacity duration-300`}>
+              <h3 className="z-10 mt-3 text-3xl font-bold text-white">{title}</h3>
+              <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">{subTitle}</div>
+            </div>
             <img src={imagePreview} alt={srcAlt} className="absolute inset-0 h-full w-full object-cover" />
           </div>
 
