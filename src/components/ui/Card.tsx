@@ -1,5 +1,4 @@
-import { useState, useCallback } from "react";
-import ReactPlayer from "react-player";
+import { useState, useRef, useCallback } from "react";
 
 type BaseCardProps = {
   className?: string;
@@ -26,7 +25,7 @@ type VideoCardProps = BaseCardProps & {
 type CardProps = ImageCardProps | VideoCardProps;
 
 export default function Card({
-  className,
+  className = "",
   src,
   srcAlt,
   title = "Placeholder Title",
@@ -37,68 +36,86 @@ export default function Card({
 }: CardProps) {
   const [isHovering, setIsHovering] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = useCallback(() => {
     setIsHovering(true);
-    if (video) {
+    if (video && videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error('Error playing video:', error);
+      });
       setIsPlaying(true);
     }
   }, [video]);
 
   const handleMouseLeave = useCallback(() => {
     setIsHovering(false);
-    setIsPlaying(false);
-  }, []);
+    if (video && videoRef.current) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [video]);
+
+  const handleImageError = useCallback(() => {
+    console.error(`Failed to load image: ${src}`);
+    setImageError(true);
+  }, [src]);
+
+  // Early return if we don't have required props
+  if (!src) {
+    console.error('Card component received no src prop');
+    return null;
+  }
 
   return (
     <div
-      className={`${className} ${image ? "image-item" : ""} ${video ? "video-item aspect-video" : ""} fancybox relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg drop-shadow-md`}
+      className={`${className} ${image ? "image-item" : ""} ${
+        video ? "video-item" : ""
+      } fancybox relative flex items-center justify-center overflow-hidden rounded-lg cursor-pointer`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {image && <img src={src} alt={srcAlt} className="absolute inset-0 h-full w-full object-cover" />}
+      {image && !imageError && (
+        <img 
+          src={src} 
+          alt={srcAlt || 'Media content'} 
+          className="w-full h-full object-cover"
+          onError={handleImageError}
+        />
+      )}
+
+      {image && imageError && (
+        <div className="w-full h-full min-h-[200px] bg-gray-200 flex items-center justify-center">
+          <span className="text-gray-500">Image failed to load</span>
+        </div>
+      )}
 
       {video && (
-        <div className="absolute inset-0 flex h-full w-full items-center justify-center">
-          {/* Image Preview */}
-          <div className={`absolute inset-0`}>
-            <i
-              className={` ${isPlaying ? "opacity-0" : "opacity-100"} fa fa-solid fa-play absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform text-6xl text-red-500 transition-opacity duration-300`}
-            ></i>
-            <div className={`${isPlaying ? "opacity-0" : "opacity-100"} absolute bottom-5 left-5 flex flex-col transition-opacity duration-300`}>
-              <h3 className="z-10 mt-3 text-3xl font-bold text-white">{title}</h3>
-              <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">{subTitle}</div>
-            </div>
-            <img src={imagePreview} alt={srcAlt} className="absolute inset-0 h-full w-full object-cover" />
+        <div className="flex h-full w-full">
+          <div 
+            className={`${isPlaying ? "opacity-0" : "opacity-100"} transition-opacity duration-300 absolute w-full h-full`}
+          >
+            {imagePreview && (
+              <img 
+                src={imagePreview} 
+                alt={srcAlt || 'Video preview'} 
+                className="h-full w-full object-cover"
+                onError={() => console.error(`Failed to load video preview: ${imagePreview}`)}
+              />
+            )}
           </div>
 
-          {/* ReactPlayer Container */}
-          <div className={`absolute inset-0 transition-opacity duration-300 ${isPlaying ? "opacity-100" : "opacity-0"}`}>
-            <ReactPlayer
-              url={src}
-              playing={isPlaying}
-              loop={true}
-              muted={true}
-              width="100%"
-              height="100%"
-              playsinline
-              config={{
-                file: {
-                  attributes: {
-                    style: {
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    },
-                  },
-                },
-              }}
-            />
-          </div>
+          <video 
+            ref={videoRef}
+            loop 
+            muted 
+            playsInline
+            className="h-full w-full flex-1 rounded-md object-cover"
+            onError={() => console.error(`Failed to load video: ${src}`)}
+          >
+            <source src={src} type="video/mp4" />
+          </video>
         </div>
       )}
     </div>

@@ -17,6 +17,8 @@ type CategoryInfo = {
 type MediaItem = {
   _id: string;
   contentType: "video" | "image";
+  caption: string;
+  imgSrcAlt: string;
   categoryId: string;
   thumbnailImageAlt: string;
   isArchived: boolean;
@@ -65,11 +67,11 @@ export default function Projects({ setRef }: ProjectsProps) {
         <Card
           key={item._id}
           video={true}
-          title={item.thumbnailImageAlt}
+          title={item.caption || ""}
           subTitle={categories[item.categoryId]?.menuTitle || ""}
-          src={item.videoPreview || item.src}
+          src={item.videoPreview || item.imgSrc} // Using imgSrc as fallback
           imagePreview={item.imgSrc}
-          srcAlt={item.thumbnailImageAlt}
+          srcAlt={item.imgSrcAlt}
         />
       );
     }
@@ -78,19 +80,21 @@ export default function Projects({ setRef }: ProjectsProps) {
       <Card
         key={item._id}
         image={true}
-        title={item.thumbnailImageAlt}
+        title={item.caption || ""}
         subTitle={categories[item.categoryId]?.menuTitle || ""}
-        src={item.src}
-        srcAlt={item.thumbnailImageAlt}
+        src={item.imgSrc} // Changed from src to imgSrc
+        srcAlt={item.imgSrcAlt} // Changed from srcAlt to imgSrcAlt
       />
     );
   };
 
   return (
     <section ref={setRef} className="relative bg-zinc-100 font-firaSans drop-shadow-lg">
-      <SectionHeader sectionTitle="Projects" borderColor="bg-yellow-500" />
+      <SectionHeader sectionTitle="Projects" borderColor="bg-yellow-500" titleContent={<div>
+        <p>Text here</p>
+      </div>} />
       <div className="p-5 sm:p-8">
-        <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4 [&>.video-item:not(:first-child)]:mt-8 [&>.image-item:not(:first-child)]:mt-8">
+        <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-4 [&>.image-item:not(:first-child)]:mt-8 [&>.video-item:not(:first-child)]:mt-8">
           {mediaItems.map(renderCard)}
         </div>
       </div>
